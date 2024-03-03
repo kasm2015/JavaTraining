@@ -1,4 +1,4 @@
-package training.basics;
+package com.arcagile.JavaTraining.training.basics;
 
 public class HelloWorld {
 

@@ -1,10 +1,10 @@
-package training.polymorphism;
+package com.arcagile.JavaTraining.training.polymorphism;
 
-public class ICICI extends Bank {
+public class ICICI extends  training.polymorphism.Bank {
 
-    @Override
+    /*@Override
     Integer getRateOfInterest () {
         System.out.println("I am inside getRateOfInterest of ICICI class");
         return 7;
-    }
+    }*/
 }
