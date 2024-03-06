@@ -18,7 +18,12 @@ public class ExceptionExample {
             System.out.println("Division of two numbers : " +a/b);
             System.out.println("Value of string : " +str.charAt(0));
 
-            division(9,0);
+            division(9,6);
+
+            //Calling User defined exception
+            //throw new MyException("Exception thrown by user");
+
+            throw new UserException("Exception thrown by user defined class");
 
         } catch (ArithmeticException aex) {
             System.out.println("throwing an arthimetic exception");
