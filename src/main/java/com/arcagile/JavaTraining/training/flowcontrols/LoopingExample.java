@@ -31,7 +31,23 @@ public class LoopingExample {
             initialValue++;
         }
 
+        int init = 0;
+        //printing value from 1 to 10
+        while ( init < 10) {
+            init++;
+            System.out.println(" The value of init : " +init);
+        }
+
+        //DO while example
+        do {
+            System.out.println("i am printing before while condition, the value of init " + init);
+            init++;
+        } while ( init <= 20);
 
 
+        //For loop example
+        for(int j = 1; j <= 20 ; j++ ) {
+            System.out.println("The value of J is : " +j);
+        }
     }
 }
