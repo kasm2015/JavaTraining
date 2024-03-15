@@ -1,11 +1,14 @@
 package com.arcagile.JavaTraining.training.java8;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamExample {
 
     private static List<Product> productList = new ArrayList<>();
+
+    private static List<Employee> employeeList = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -17,6 +20,8 @@ public class StreamExample {
 
         //Create a list
         List<String> list = Arrays.asList("Mango","Apple","Orange","Banana","Pomogranete");
+
+        List<Integer> numbers = Arrays.asList(1,4,6,3,7,9,4,2,1,9,3);
 
         //Create a stream for a above list
         Stream<String> fruits = list.stream();
@@ -37,6 +42,15 @@ public class StreamExample {
 
         //Using Stream Filter operation
         filterOperation();
+
+        //Using collect method
+        calculateTotalSalary();
+
+        //Using distinct() method
+        System.out.println("Numbers with Duplicate values : " +numbers);
+        List<Integer> distinctValues = numbers.stream().distinct().collect(Collectors.toList());
+        System.out.println("Numbers with distinct values : " +distinctValues);
+
     }
 
     public static void filterOperation() {
@@ -64,6 +78,59 @@ public class StreamExample {
         //Find employeess who salary is greater than 10k
 
         //find employee who is having age greater 30
+
+    }
+
+    public static void calculateTotalSalary() {
+        //Add employees data
+        employeeList.add(new Employee(1, "Rahul",25,"abc street1","HR",20000L));
+        employeeList.add(new Employee(2, "Sanjana",45,"abc street1","IT",24000L));
+        employeeList.add(new Employee(3, "Venkat",35,"abc street1","HR",25600L));
+        employeeList.add(new Employee(4, "Sridhar",27,"abc street1","FINANCE",40000L));
+        employeeList.add(new Employee(5, "Rohit",29,"abc street1","IT",30000L));
+        employeeList.add(new Employee(6, "Mohan",55,"abc street1","FINANCE",60000L));
+
+        //GEt the total salary being paid to all the employee
+        Long totalSalary = employeeList.stream()
+                .collect(Collectors.summingLong(employee -> employee.getSalary()));
+        System.out.println("Total Salary paid : " +totalSalary);
+
+        //find the min salary
+        Employee minSalary = employeeList.stream()
+                .min((employee1, employee2) -> employee1.getSalary() > employee2.getSalary() ? 1 : -1).get();
+        System.out.println("Employee with min salary : " +minSalary.getSalary());
+
+
+        //find the max salary
+        Employee maxSalary = employeeList.stream()
+                .max((employee1, employee2) -> employee1.getSalary()  > employee2.getSalary() ? 1 : -1).get();
+        System.out.println("Employee with max salary : " +maxSalary.getSalary());
+
+        //Using map method -> find employee salary greater 25k
+        List<Long> salaryGreaterThan25k = employeeList.stream()
+                .filter(employee -> employee.getSalary() > 25000L)
+                .map(Employee::getSalary) //fetch employee salary
+                .toList();
+
+        salaryGreaterThan25k.forEach(System.out::println);
+
+        System.out.println("Employee salary greater than 30k");
+        List<Employee> employeeList1 = employeeList.stream()
+                .filter(employee -> employee.getSalary() > 30000L)
+                .toList();
+
+        employeeList1.forEach(System.out::println);
+
+        //find the first employee who is having salary greater 25k
+        System.out.println("Find the first Employee salary greater than 25k");
+        Optional<Employee> firstEmployee = employeeList1.stream()
+                .filter(employee -> employee.getSalary() > 25000L)
+                .findFirst();
+
+        boolean isPresent = firstEmployee.isPresent();
+        System.out.println("Is employee found : " +isPresent);
+        Employee empObj = firstEmployee.get();
+        System.out.println("Employee Details : " +empObj.toString());
     }
 
 
