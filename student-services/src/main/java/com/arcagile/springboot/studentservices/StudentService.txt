@@ -1,0 +1,9 @@
+1. Create a sample RestController
+2. Create a sample rest end point( Rest API) - GET /helloWorld
+3. What kind of Student information we are saving, define the end points, what operation ( create, update, delete, edit , get all students. get all courses)
+4. Student -> id, name, age, courses
+
+// GET localhost:8080/student
+// POST localhost:8080/student
+// PUT localhost:8080/student
+// DELETE localhost:8080/student
